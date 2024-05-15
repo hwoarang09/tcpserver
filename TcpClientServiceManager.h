@@ -12,6 +12,7 @@ public:
 	TcpClientServiceManager(TcpServerController*);
 	~TcpClientServiceManager();
 	void StartTcpClientServiceManagerThread();
+	void ClientFDStartListen(TcpClient* tcp_client);
 };
 #endif
 

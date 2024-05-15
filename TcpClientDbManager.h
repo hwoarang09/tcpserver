@@ -6,6 +6,7 @@
 class TcpClient;
 class TcpServerController;
 
+
 class TcpClientDbManager {
 	private:
 		std::list<TcpClient*> tcp_client_db;
@@ -17,5 +18,6 @@ class TcpClientDbManager {
 		~TcpClientDbManager();
 
 		void StartTcpClientDbManagerInit();
+		void AddClienttoDB(TcpClient* tcp_client);
 };
 #endif

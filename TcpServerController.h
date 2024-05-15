@@ -6,6 +6,7 @@
 class TcpNewConnectionAcceptor;
 class TcpClientServiceManager;
 class TcpClientDbManager;
+class TcpClient;
 
 class TcpServerController {
 	private:
@@ -24,7 +25,7 @@ class TcpServerController {
 		~TcpServerController();
 		void Start();
 		void Stop();
-
+		void ProcessNewClient(TcpClient *tcp_client);
 
 
 
