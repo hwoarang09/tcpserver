@@ -15,7 +15,7 @@ class TcpNewConnectionAcceptor {
 		~TcpNewConnectionAcceptor();
 
 		void StartTcpNewConectionAcceptorThread();
-
+		void StartTcpNewConectionAcceptorThreadInternal();
 
 };
 #endif
