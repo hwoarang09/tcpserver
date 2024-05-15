@@ -82,7 +82,7 @@ TcpNewConnectionAcceptor::StartTcpNewConectionAcceptorThreadInternal() {
 			continue;
 		}
 		printf("Connection Acceptted from Client[%s, %d]\n",
-			network_convert_ip_n_to_p(client_addr.sin_addr.s_addr, 0),
+			network_convert_ip_n_to_p(htonl(client_addr.sin_addr.s_addr), 0),
 			htons(client_addr.sin_port));
 	}
 }

@@ -1,0 +1,23 @@
+﻿  network_utils.cpp
+  TcpClient.cpp
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpClient.cpp(75,45): error C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpClient.cpp(109,5): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpClient.cpp(111,5): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  TcpClientDbManager.cpp
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpNewConnectionAcceptor.h(4,10): error C1083: 포함 파일을 열 수 없습니다. 'pthread.h': No such file or directory
+  (소스 파일 'TcpClientDbManager.cpp'을(를) 컴파일하는 중)
+  
+  TcpClientServiceManager.cpp
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpNewConnectionAcceptor.h(4,10): error C1083: 포함 파일을 열 수 없습니다. 'pthread.h': No such file or directory
+  (소스 파일 'TcpClientServiceManager.cpp'을(를) 컴파일하는 중)
+  
+  TcpNewConnectionAcceptor.cpp
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpNewConnectionAcceptor.h(4,10): error C1083: 포함 파일을 열 수 없습니다. 'pthread.h': No such file or directory
+  (소스 파일 'TcpNewConnectionAcceptor.cpp'을(를) 컴파일하는 중)
+  
+  TcpServerController.cpp
+C:\Users\hwoar\source\repos\tcp_server3\tcp_server3\TcpNewConnectionAcceptor.h(4,10): error C1083: 포함 파일을 열 수 없습니다. 'pthread.h': No such file or directory
+  (소스 파일 'TcpServerController.cpp'을(를) 컴파일하는 중)
+  
+  testapp.cpp
+  코드를 생성하고 있습니다...
