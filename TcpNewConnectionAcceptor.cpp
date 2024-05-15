@@ -86,6 +86,7 @@ TcpNewConnectionAcceptor::StartTcpNewConectionAcceptorThreadInternal() {
 			htons(client_addr.sin_port));
 	}
 }
+
 static void* tcp_listen_for_new_connections(void* arg) {
 	TcpNewConnectionAcceptor* tcp_new_conn_acc =
 		(TcpNewConnectionAcceptor*)arg;
