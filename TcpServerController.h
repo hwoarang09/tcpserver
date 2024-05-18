@@ -19,6 +19,16 @@ class TcpServerController {
 		uint16_t port_no;
 		std::string name;
 
+		void(*client_connected)(const TcpServerController*, const TcpClient *);
+		void(*client_disconnected)(const TcpServerController*, const TcpClient *);
+		void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, unsigned char *, uint16_t);
+
+		void SetServerNotifCallbacks(
+			void(*client_connected)(const TcpServerController*, const TcpClient *),
+			void(*client_disconnected)(const TcpServerController*, const TcpClient *),
+			void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, unsigned char*, uint16_t)
+		);
+
 		/* Constructors and Destructors */
 		TcpServerController(std::string ip_addr, 
 			uint16_t port_no, std::string name);

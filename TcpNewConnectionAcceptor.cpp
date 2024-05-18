@@ -88,7 +88,11 @@ TcpNewConnectionAcceptor::StartTcpNewConectionAcceptorThreadInternal() {
 
 		tcp_client->tcp_ctrlr = this->tcp_ctrlr;
 		tcp_client->comm_fd = comm_sock_fd;
-		
+
+		if (this->tcp_ctrlr->client_connected)
+		{
+			this->tcp_ctrlr->client_connected(this->tcp_ctrlr, tcp_client);
+		}
 		/*
 			Tell the TCP Controller, to further
 			process the Client.
@@ -96,7 +100,7 @@ TcpNewConnectionAcceptor::StartTcpNewConectionAcceptorThreadInternal() {
 
 		this->tcp_ctrlr->ProcessNewClient(tcp_client);
 
-		printf("Connection Acceptted from Client[%s, %d]\n",
+		printf("Connection Accepted from Client [%s, %d]\n",
 			network_convert_ip_n_to_p(htonl(client_addr.sin_addr.s_addr), 0),
 			htons(client_addr.sin_port));
 	}
