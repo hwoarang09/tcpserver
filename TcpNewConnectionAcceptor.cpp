@@ -9,6 +9,7 @@
 #include "TcpClientDbManager.h"
 #include "TcpClient.h"
 #include "network_utils.h"
+
 TcpNewConnectionAcceptor::TcpNewConnectionAcceptor(TcpServerController* tcp_ctrlr) {
 
 	WSADATA wsaData;

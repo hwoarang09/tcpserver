@@ -28,6 +28,7 @@ public:
 	void StartTcpClientServiceManagerThreadInternal();
 	int GetMaxFd();
 	void CopyClientFDtoFDSet(fd_set* fdset);
+	void StopTcpClientServiceManagerThread();
 };
 #endif
 

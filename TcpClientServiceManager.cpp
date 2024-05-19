@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <pthread.h>
 #include <memory.h>
 #include <assert.h>
 #include <errno.h>
 #include <WinSock2.h>
-
+#include <windows.h>
 
 #include "TcpClientServiceManager.h"
 #include "TcpServerController.h"
@@ -40,6 +40,8 @@ void TcpClientServiceManager::StartTcpClientServiceManagerThreadInternal() {
 
 	this->max_fd = this->GetMaxFd();
 	FD_ZERO(&this->backup_fd_set);
+	this->CopyClientFDtoFDSet(& this->backup_fd_set);
+
 	while (true) {
 		memcpy(&this->active_fd_set, &this->backup_fd_set, sizeof(fd_set));
 		select(this->max_fd + 1, &this->active_fd_set, 0, 0, 0);
@@ -72,6 +74,8 @@ void TcpClientServiceManager::StartTcpClientServiceManagerThreadInternal() {
 void* tcp_client_svc_manager_thread_fn(void *arg) {
 	TcpClientServiceManager* svc_mgr = (TcpClientServiceManager*)arg;
 
+	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+	pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, NULL);
 	svc_mgr->StartTcpClientServiceManagerThreadInternal();
 	return NULL;
 }
@@ -84,6 +88,48 @@ void TcpClientServiceManager::StartTcpClientServiceManagerThread() {
 	printf("Service started : TcpClientServiceManagerThread\n");
 }
 
+void TcpClientServiceManager::StopTcpClientServiceManagerThread() {
+	pthread_cancel(*this->client_svc_mgr_thread);
+	//TerminateThread(*this->client_svc_mgr_thread, 0);
+	pthread_join(*this->client_svc_mgr_thread, NULL);
+	free(this->client_svc_mgr_thread);
+	this->client_svc_mgr_thread = NULL;
+}
+
+
 void TcpClientServiceManager::ClientFDStartListen(TcpClient* tcp_client) {
 
+}
+
+void
+TcpClientServiceManager::CopyClientFDtoFDSet(fd_set* fdset) {
+
+	TcpClient* tcp_client;
+	std::list<TcpClient*>::iterator it;
+
+	for (it = this->tcp_client_db.begin();
+		it != this->tcp_client_db.end();
+		++it) {
+
+		tcp_client = *it;
+		FD_SET(tcp_client->comm_fd, fdset);
+	}
+}
+
+int
+TcpClientServiceManager::GetMaxFd() {
+
+	int max_fd_lcl = 0;
+
+	TcpClient* tcp_client;
+	std::list<TcpClient*>::iterator it;
+
+	for (it = this->tcp_client_db.begin(); it != this->tcp_client_db.end(); ++it) {
+
+		tcp_client = *it;
+		if (tcp_client->comm_fd > max_fd_lcl) {
+			max_fd_lcl = tcp_client->comm_fd;
+		}
+	}
+	return max_fd_lcl;
 }
