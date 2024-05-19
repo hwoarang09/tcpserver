@@ -27,7 +27,7 @@ static void appln_client_disconnected(const TcpServerController*, const TcpClien
 	
 }
 
-static void appln_client_msg_recvd(const TcpServerController*, const TcpClient *, unsigned char* msg, uint16_t msg_size) {
+static void appln_client_msg_recvd(const TcpServerController*, const TcpClient *, char* msg, uint16_t msg_size) {
 
 }
 

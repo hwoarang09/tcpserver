@@ -21,12 +21,12 @@ class TcpServerController {
 
 		void(*client_connected)(const TcpServerController*, const TcpClient *);
 		void(*client_disconnected)(const TcpServerController*, const TcpClient *);
-		void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, unsigned char *, uint16_t);
+		void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, char *, uint16_t);
 
 		void SetServerNotifCallbacks(
 			void(*client_connected)(const TcpServerController*, const TcpClient *),
 			void(*client_disconnected)(const TcpServerController*, const TcpClient *),
-			void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, unsigned char*, uint16_t)
+			void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, char*, uint16_t)
 		);
 
 		/* Constructors and Destructors */

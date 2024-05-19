@@ -39,7 +39,7 @@ void TcpServerController::ProcessNewClient(TcpClient* tcp_client) {
 void TcpServerController::SetServerNotifCallbacks(
 	void(*client_connected)(const TcpServerController*, const TcpClient *),
 	void(*client_disconnected)(const TcpServerController*, const TcpClient *),
-	void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, unsigned char*, uint16_t)) {
+	void(*client_msg_recvd)(const TcpServerController*, const TcpClient *, char*, uint16_t)) {
 
 	this->client_connected = client_connected;
 	this->client_disconnected = client_disconnected;
